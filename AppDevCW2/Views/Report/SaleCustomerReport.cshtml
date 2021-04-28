@@ -1,0 +1,67 @@
+﻿@model IEnumerable<AppDevCW2.ViewModels.SaleCustomerViewModel>
+
+@{
+    ViewData["Title"] = "Sale Customer Report";
+}
+
+<h1>Item Stock Report</h1>
+
+<form class="form-inline" style="margin-bottom: 15px;">
+    @using (Html.BeginForm("SaleCustomerReport", "Report", FormMethod.Get))
+    {
+        <input class="form-control mr-sm-2" name="search" id="search" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit">Search</button>
+        <br />
+    }
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.customerName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.saleDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.saleQuantity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.unitPrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.totalAmount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.itemName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.customerName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.saleDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.saleQuantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.unitPrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.totalAmount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.itemName)
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

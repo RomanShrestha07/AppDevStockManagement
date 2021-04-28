@@ -203,3 +203,5 @@ C:\Users\User\Desktop\AppDevCW2\Project3\AppDevCW2\obj\Debug\netcoreapp3.1\Razor
 C:\Users\User\Desktop\AppDevCW2\Project3\AppDevCW2\obj\Debug\netcoreapp3.1\Razor\Views\SaleDetails\Edit.cshtml.g.cs
 C:\Users\User\Desktop\AppDevCW2\Project3\AppDevCW2\obj\Debug\netcoreapp3.1\Razor\Views\SaleDetails\Index.cshtml.g.cs
 C:\Users\User\Desktop\AppDevCW2\Project3\AppDevCW2\obj\Debug\netcoreapp3.1\Razor\Views\Report\StockListReport.cshtml.g.cs
+C:\Users\User\Desktop\AppDevCW2\Project3\AppDevCW2\obj\Debug\netcoreapp3.1\Razor\Views\Bill\CreateBill.cshtml.g.cs
+C:\Users\User\Desktop\AppDevCW2\Project3\AppDevCW2\obj\Debug\netcoreapp3.1\Razor\Views\Report\SaleCustomerReport.cshtml.g.cs
