@@ -28,7 +28,7 @@ namespace AppDevCW2.Controllers
             List<ItemStockViewModel> listData = new List<ItemStockViewModel>();
             using (var command = _context.Database.GetDbConnection().CreateCommand())
             {
-                command.CommandText = "SELECT i.id as itemId, itemCode, itemName, quantity as itemQuantity from Item i inner join Stock s on i.id=s.itemId";
+                command.CommandText = "SELECT i.id as itemId, itemCode, itemName, quantity as itemQuantity, c.categoryName as itemCategory from Item i inner join Stock s on i.id=s.itemId join Category c on c.id=i.categoryId";
 
                 _context.Database.OpenConnection();
                 using (var result = command.ExecuteReader())
@@ -41,6 +41,7 @@ namespace AppDevCW2.Controllers
                         data.itemCode = result.GetString(1);
                         data.itemName = result.GetString(2);
                         data.itemQuantity = result.GetInt32(3);
+                        data.itemCategory = result.GetString(4);
                         listData.Add(data);
                     }
                 }
@@ -84,7 +85,7 @@ namespace AppDevCW2.Controllers
             List<LowStockViewModel> listData = new List<LowStockViewModel>();
             using (var command = _context.Database.GetDbConnection().CreateCommand())
             {
-                command.CommandText = "SELECT i.id as itemId, itemName, itemCode, st.quantity as itemQuantity from Item i join Stock st on i.id=st.itemId";
+                command.CommandText = "SELECT i.id as itemId, itemName, itemCode, st.quantity as itemQuantity, c.categoryName as itemCategory from Item i join Stock st on i.id=st.itemId join Category c on c.id=i.categoryId";
 
                 _context.Database.OpenConnection();
                 using (var result = command.ExecuteReader())
@@ -97,6 +98,7 @@ namespace AppDevCW2.Controllers
                         data.itemName = result.GetString(1);
                         data.itemCode = result.GetString(2);
                         data.itemQuantity = result.GetInt32(3);
+                        data.itemCatgeory = result.GetString(4);
                         listData.Add(data);
                     }
                 }
@@ -109,7 +111,7 @@ namespace AppDevCW2.Controllers
             List<OutOfStockViewModel> listData = new List<OutOfStockViewModel>();
             using (var command = _context.Database.GetDbConnection().CreateCommand())
             {
-                command.CommandText = "SELECT i.id as itemId, itemName, itemCode, st.quantity as itemQuantity, purchaseDate as stockedDate from Item i join Stock st on i.id=st.itemId join PurchaseDetail pd on i.id=pd.itemId join Purchase p on pd.purchaseId=p.id";
+                command.CommandText = "SELECT i.id as itemId, itemName, itemCode, st.quantity as itemQuantity, purchaseDate as stockedDate, c.categoryName as itemCategory from Item i join Stock st on i.id=st.itemId join PurchaseDetail pd on i.id=pd.itemId join Purchase p on pd.purchaseId=p.id join Category c on i.categoryId=c.id";
 
                 _context.Database.OpenConnection();
                 using (var result = command.ExecuteReader())
@@ -123,6 +125,7 @@ namespace AppDevCW2.Controllers
                         data.itemCode = result.GetString(2);
                         data.itemQuantity = result.GetInt32(3);
                         data.stockedDate = result.GetDateTime(4);
+                        data.itemCategory = result.GetString(5);
                         listData.Add(data);
                     }
                 }
@@ -169,6 +172,34 @@ namespace AppDevCW2.Controllers
             TimeSpan aMonth = new TimeSpan(31, 0, 0, 0);
             DateTime monthBefore = dateNow.Subtract(aMonth);
             return View(listData.Where(x => x.lastSaleDate < monthBefore ));
+        }
+
+        public IActionResult NotSoldReport()
+        {
+            List<NotBoughtViewModel> listData = new List<NotBoughtViewModel>();
+            using (var command = _context.Database.GetDbConnection().CreateCommand())
+            {
+                command.CommandText = "SELECT c.id as customerId, customerName, customerEmail, MAX(saleDate) as lastSaleDate from Customer c join Sale s on c.id=s.customerId group by customerName, c.id, customerEmail";
+
+                _context.Database.OpenConnection();
+                using (var result = command.ExecuteReader())
+                {
+                    NotBoughtViewModel data;
+                    while (result.Read())
+                    {
+                        data = new NotBoughtViewModel();
+                        data.customerId = result.GetInt32(0);
+                        data.customerName = result.GetString(1);
+                        data.customerEmail = result.GetString(2);
+                        data.lastSaleDate = result.GetDateTime(3);
+                        listData.Add(data);
+                    }
+                }
+            }
+            DateTime dateNow = DateTime.Now;
+            TimeSpan aMonth = new TimeSpan(31, 0, 0, 0);
+            DateTime monthBefore = dateNow.Subtract(aMonth);
+            return View(listData.Where(x => x.lastSaleDate < monthBefore));
         }
     }
 }

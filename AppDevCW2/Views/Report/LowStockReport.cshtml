@@ -18,23 +18,28 @@
             <th>
                 @Html.DisplayNameFor(model => model.itemQuantity)
             </th>
-            <th></th>
+            <th>
+                @Html.DisplayNameFor(model => model.itemCatgeory)
+            </th>
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.itemCode)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.itemName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.itemQuantity)
-                </td>
-            </tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.itemCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.itemName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.itemQuantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.itemCatgeory)
+            </td>
+        </tr>
         }
     </tbody>
 </table>

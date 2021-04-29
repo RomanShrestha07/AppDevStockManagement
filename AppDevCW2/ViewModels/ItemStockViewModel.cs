@@ -14,5 +14,7 @@ namespace AppDevCW2.ViewModels
         public string itemName { get; set; }
 
         public int itemQuantity { get; set; }
+
+        public string itemCategory { get; set; }
     }
 }

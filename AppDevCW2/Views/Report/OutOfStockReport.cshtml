@@ -29,25 +29,31 @@
             <th>
                 @Html.DisplayNameFor(model => model.stockedDate)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.itemCategory)
+            </th>
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.itemCode)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.itemName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.itemQuantity)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.stockedDate)
-                </td>
-            </tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.itemCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.itemName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.itemQuantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.stockedDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.itemCategory)
+            </td>
+        </tr>
         }
     </tbody>
 </table>
