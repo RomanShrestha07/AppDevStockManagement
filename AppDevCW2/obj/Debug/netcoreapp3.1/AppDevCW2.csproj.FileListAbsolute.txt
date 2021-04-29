@@ -208,3 +208,4 @@ C:\Users\User\Desktop\AppDevCW2\Project3\AppDevCW2\obj\Debug\netcoreapp3.1\Razor
 C:\Users\User\Desktop\AppDevCW2\Project3\AppDevCW2\obj\Debug\netcoreapp3.1\Razor\Views\Report\LowStockReport.cshtml.g.cs
 C:\Users\User\Desktop\AppDevCW2\Project3\AppDevCW2\obj\Debug\netcoreapp3.1\Razor\Views\Report\OutOfStockReport.cshtml.g.cs
 C:\Users\User\Desktop\AppDevCW2\Project3\AppDevCW2\obj\Debug\netcoreapp3.1\Razor\Views\Report\NotBoughtReport.cshtml.g.cs
+C:\Users\User\Desktop\AppDevCW2\Project3\AppDevCW2\obj\Debug\netcoreapp3.1\Razor\Views\Report\NotSoldReport.cshtml.g.cs

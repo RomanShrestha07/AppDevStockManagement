@@ -1,0 +1,46 @@
+﻿@model IEnumerable<AppDevCW2.ViewModels.NotSoldViewModel>
+
+@{
+    ViewData["Title"] = "Not Sold Report";
+}
+
+<h1>Not Sold Report</h1>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.itemCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.itemName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.itemQuantity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.lastSaleDate)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.itemCode)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.itemName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.itemQuantity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.lastSaleDate)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -46,7 +46,15 @@ namespace AppDevCW2.Controllers
                     }
                 }
             }
-            return View(listData.Where(x=>x.itemName == search && x.itemQuantity > 0));
+            var a = listData.Where(x => x.itemQuantity > 0);
+            if (search != null)
+            {
+                return View(listData.Where(x => x.itemName == search && x.itemQuantity > 0));
+            }
+            else
+            {
+                return View(listData.Where(x => x.itemQuantity > 0));
+            }
         }
 
         public IActionResult SaleCustomerReport(string search)
@@ -176,22 +184,23 @@ namespace AppDevCW2.Controllers
 
         public IActionResult NotSoldReport()
         {
-            List<NotBoughtViewModel> listData = new List<NotBoughtViewModel>();
+            List<NotSoldViewModel> listData = new List<NotSoldViewModel>();
             using (var command = _context.Database.GetDbConnection().CreateCommand())
             {
-                command.CommandText = "SELECT c.id as customerId, customerName, customerEmail, MAX(saleDate) as lastSaleDate from Customer c join Sale s on c.id=s.customerId group by customerName, c.id, customerEmail";
+                command.CommandText = "SELECT i.id as itemId, itemName, itemCode, MAX(st.quantity) as itemQuantity, MAX(sa.saleDate) as lastSaleDate from Item i join Stock st on i.id=st.itemId join SaleDetail sd on i.id=sd.itemId join Sale sa on sa.id=sd.saleId group by i.id, itemName, itemCode";
 
                 _context.Database.OpenConnection();
                 using (var result = command.ExecuteReader())
                 {
-                    NotBoughtViewModel data;
+                    NotSoldViewModel data;
                     while (result.Read())
                     {
-                        data = new NotBoughtViewModel();
-                        data.customerId = result.GetInt32(0);
-                        data.customerName = result.GetString(1);
-                        data.customerEmail = result.GetString(2);
-                        data.lastSaleDate = result.GetDateTime(3);
+                        data = new NotSoldViewModel();
+                        data.itemId = result.GetInt32(0);
+                        data.itemName = result.GetString(1);
+                        data.itemCode = result.GetString(2);
+                        data.itemQuantity = result.GetInt32(3);
+                        data.lastSaleDate = result.GetDateTime(4);
                         listData.Add(data);
                     }
                 }
