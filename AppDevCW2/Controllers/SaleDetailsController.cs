@@ -59,12 +59,23 @@ namespace AppDevCW2.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("id,quantity,unitPrice,totalAmount,saleId,itemId")] SaleDetail saleDetail)
+        public async Task<IActionResult> Create(SaleDetail saleDetail)
         {
             if (ModelState.IsValid)
             {
+                saleDetail.totalAmount = saleDetail.quantity * saleDetail.unitPrice;
                 _context.Add(saleDetail);
                 await _context.SaveChangesAsync();
+
+                int stockQuantity = _context.Stock.Where(x => x.itemId == saleDetail.itemId).Select(u => u.quantity).First();
+                int qty = stockQuantity - saleDetail.quantity;
+                using (var command = _context.Database.GetDbConnection().CreateCommand())
+                {
+                    command.CommandText = "UPDATE Stock SET quantity=" + qty + "WHERE itemId=" + saleDetail.itemId;
+                    _context.Database.OpenConnection();
+                    using (var result = command.ExecuteReader()) { }
+                }
+
                 return RedirectToAction(nameof(Index));
             }
             ViewData["itemId"] = new SelectList(_context.Item, "id", "itemCode", saleDetail.itemId);

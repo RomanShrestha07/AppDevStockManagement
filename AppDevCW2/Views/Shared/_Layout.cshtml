@@ -30,20 +30,21 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Customers" asp-action="">Customers</a>
-                        </li>
-                        <li class="nav-item">
-                            <div class="dropdown">
-                                <a class="nav-link text-dark" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Reports ∨
-                                </a>
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                    <a class="dropdown-item" asp-controller="Report" asp-action="StockListReport">Stock List Report</a>
-                                    <a class="dropdown-item" asp-controller="Report" asp-action="SaleCustomerReport">Customer Sale Report</a>
-                                    <a class="dropdown-item" asp-controller="Report" asp-action="LowStockReport">Low Stock Report</a>
-                                    <a class="dropdown-item" asp-controller="Report" asp-action="OutOfStockReport">Out of Stock Stock Report</a>
-                                    <a class="dropdown-item" asp-controller="Report" asp-action="NotBoughtReport">Not Bought Report</a>
-                                    <a class="dropdown-item" asp-controller="Report" asp-action="NotSoldReport">Not Sold Report</a>
-                                </div>
+                        </li>                        
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Reports</a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" asp-controller="Report" asp-action="StockListReport">Stock List Report</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" asp-controller="Report" asp-action="SaleCustomerReport">Customer Sale Report</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" asp-controller="Report" asp-action="LowStockReport">Low Stock Report</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" asp-controller="Report" asp-action="OutOfStockReport">Out of Stock Report</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" asp-controller="Report" asp-action="NotBoughtReport">Not Bought Report</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" asp-controller="Report" asp-action="NotSoldReport">Not Sold Report</a>                                                        
                             </div>
                         </li>
                     </ul>
