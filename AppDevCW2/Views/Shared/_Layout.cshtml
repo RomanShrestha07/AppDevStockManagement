@@ -30,7 +30,13 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Customers" asp-action="">Customers</a>
-                        </li>                        
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Purchases" asp-action="Create">Purchase</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Sales" asp-action="Create">Sale</a>
+                        </li>                       
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Reports</a>
                             <div class="dropdown-menu">
@@ -44,7 +50,7 @@
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" asp-controller="Report" asp-action="NotBoughtReport">Not Bought Report</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" asp-controller="Report" asp-action="NotSoldReport">Not Sold Report</a>                                                        
+                                <a class="dropdown-item" asp-controller="Report" asp-action="NotSoldReport">Not Sold Report</a>
                             </div>
                         </li>
                     </ul>

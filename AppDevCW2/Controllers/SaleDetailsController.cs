@@ -64,6 +64,7 @@ namespace AppDevCW2.Controllers
             if (ModelState.IsValid)
             {
                 saleDetail.totalAmount = saleDetail.quantity * saleDetail.unitPrice;
+                
                 _context.Add(saleDetail);
                 await _context.SaveChangesAsync();
 

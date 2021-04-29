@@ -60,7 +60,8 @@ namespace AppDevCW2.Controllers
             {
                 _context.Add(purchase);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                //return RedirectToAction(nameof(Index));
+                return RedirectToAction("Create", "PurchaseDetails");
             }
             return View(purchase);
         }

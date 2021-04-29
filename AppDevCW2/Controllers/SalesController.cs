@@ -63,7 +63,8 @@ namespace AppDevCW2.Controllers
             {
                 _context.Add(sale);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                //return RedirectToAction(nameof(Index));
+                return RedirectToAction("Create", "SaleDetails");
             }
             ViewData["customerId"] = new SelectList(_context.Customer, "id", "customerName", sale.customerId);
             return View(sale);
