@@ -73,7 +73,60 @@ namespace AppDevCW2.Controllers
                     }
                 }
             }
-            return View(listData.Where(x=>x.customerName == search));
+            DateTime dateNow = DateTime.Now;
+            TimeSpan aMonth = new TimeSpan(31, 0, 0, 0);
+            DateTime monthBefore = dateNow.Subtract(aMonth);
+            return View(listData.Where(x=>x.customerName == search && x.saleDate > monthBefore));
+        }
+
+        public IActionResult LowStockReport()
+        {
+            List<LowStockViewModel> listData = new List<LowStockViewModel>();
+            using (var command = _context.Database.GetDbConnection().CreateCommand())
+            {
+                command.CommandText = "SELECT i.id as itemId, itemName, itemCode, st.quantity as itemQuantity from Item i join Stock st on i.id=st.itemId";
+
+                _context.Database.OpenConnection();
+                using (var result = command.ExecuteReader())
+                {
+                    LowStockViewModel data;
+                    while (result.Read())
+                    {
+                        data = new LowStockViewModel();
+                        data.itemId = result.GetInt32(0);
+                        data.itemName = result.GetString(1);
+                        data.itemCode = result.GetString(2);
+                        data.itemQuantity = result.GetInt32(3);
+                        listData.Add(data);
+                    }
+                }
+            }
+            return View(listData.Where(x => x.itemQuantity < 10 && x.itemQuantity != 0));
+        }
+
+        public IActionResult OutOfStockReport()
+        {
+            List<OutOfStockViewModel> listData = new List<OutOfStockViewModel>();
+            using (var command = _context.Database.GetDbConnection().CreateCommand())
+            {
+                command.CommandText = "SELECT i.id as itemId, itemName, itemCode, st.quantity as itemQuantity from Item i join Stock st on i.id=st.itemId";
+
+                _context.Database.OpenConnection();
+                using (var result = command.ExecuteReader())
+                {
+                    OutOfStockViewModel data;
+                    while (result.Read())
+                    {
+                        data = new OutOfStockViewModel();
+                        data.itemId = result.GetInt32(0);
+                        data.itemName = result.GetString(1);
+                        data.itemCode = result.GetString(2);
+                        data.itemQuantity = result.GetInt32(3);
+                        listData.Add(data);
+                    }
+                }
+            }
+            return View(listData.Where(x => x.itemQuantity == 0));
         }
     }
 }
