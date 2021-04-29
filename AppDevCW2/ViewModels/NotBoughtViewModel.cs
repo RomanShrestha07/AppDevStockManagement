@@ -6,18 +6,16 @@ using System.Threading.Tasks;
 
 namespace AppDevCW2.ViewModels
 {
-    public class OutOfStockViewModel
+    public class NotBoughtViewModel
     {
-        public int itemId { get; set; }
+        public int customerId { get; set; }
 
-        public string itemName { get; set; }
+        public string customerName { get; set; }
 
-        public string itemCode { get; set; }
-
-        public int itemQuantity { get; set; }
+        public string customerEmail { get; set; }
 
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
-        public DateTime stockedDate { get; set; }
+        public DateTime lastSaleDate { get; set; }
     }
 }
