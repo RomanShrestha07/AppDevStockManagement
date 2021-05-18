@@ -24,6 +24,11 @@ namespace AppDevCW2.Controllers
             return View();
         }
 
+        public IActionResult PasswordChnage()
+        {
+            return View();
+        }
+
         public async Task<IActionResult> Create([Bind("id,billNum,saleDate,customerId")] Sale sale, List<SaleDetail> ListSaleDetail)
         {
             sale.saleDate = DateTime.Now;

@@ -5,6 +5,7 @@
 }
 
 <h1>Sale Customer Report</h1>
+<p>User enters a customer name. Only the details of customers that have made a purchase in last 31 days are displayed.</p>
 
 <form class="form-inline float-right" style="margin-bottom: 15px;">
     @using (Html.BeginForm("SaleCustomerReport", "Report", FormMethod.Get))
@@ -42,26 +43,26 @@
     <tbody>
         @foreach (var item in Model)
         {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.customerName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.saleDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.saleQuantity)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.unitPrice)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.totalAmount)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.itemName)
-            </td>
-        </tr>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.customerName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.saleDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.saleQuantity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.unitPrice)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.totalAmount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.itemName)
+                </td>
+            </tr>
         }
     </tbody>
 </table>

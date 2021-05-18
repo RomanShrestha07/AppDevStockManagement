@@ -63,6 +63,13 @@ namespace AppDevCW2.Controllers
             {
                 _context.Add(item);
                 await _context.SaveChangesAsync();
+
+                Stock stok = new Stock();
+                stok.itemId = item.id;
+                stok.quantity = 0;
+                _context.Add(stok);
+                await _context.SaveChangesAsync();
+
                 return RedirectToAction(nameof(Index));
             }
             ViewData["categoryId"] = new SelectList(_context.Category, "id", "categoryName", item.categoryId);

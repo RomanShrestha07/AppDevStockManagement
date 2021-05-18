@@ -66,8 +66,16 @@ namespace AppDevCW2.Controllers
                 purchaseDetail.totalAmount = purchaseDetail.quantity * purchaseDetail.unitPrice;
                 _context.Add(purchaseDetail);
                 await _context.SaveChangesAsync();
+                int stockQuantity = 0;
+                try
+                {
+                    stockQuantity = _context.Stock.Where(x => x.itemId == purchaseDetail.itemId).Select(u => u.quantity).First();
+                }
+                catch
+                {
+                    stockQuantity = 0;
+                }
 
-                int stockQuantity = _context.Stock.Where(x => x.itemId == purchaseDetail.itemId).Select(u => u.quantity).First();
                 int qty = stockQuantity + purchaseDetail.quantity;
                 using (var command = _context.Database.GetDbConnection().CreateCommand())
                 {
